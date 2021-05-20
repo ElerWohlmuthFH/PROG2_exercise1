@@ -1,7 +1,11 @@
 package at.ac.fhcampuswien;
 
 public class App {
-    public static void main(String[] args) {
-        System.out.println("Hello world");
+
+    public boolean checkPassword(String password){
+
+        return true;
     }
+
+
 }
