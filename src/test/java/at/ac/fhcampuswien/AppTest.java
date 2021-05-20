@@ -98,12 +98,16 @@ public class AppTest {
     }
 
     @Test
-    public void sameNumbers() {
+    public void repeatNumbers() {
 
         App app = new App();
         //action
         boolean result = app.checkPassword("Password1111!!"); //more than 3 same numbers
         //assertion
-        assertFalse(result);
+        assertTrue(result);
+
     }
+
+
+
 }
