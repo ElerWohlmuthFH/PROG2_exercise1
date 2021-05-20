@@ -1,22 +1,15 @@
 package at.ac.fhcampuswien;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class App {
 
     public boolean checkPassword(String password) {
-        if (password != null
+        return password != null
                 && checkLength(password)
                 && containsLowercaseUppercase(password)
                 && containsNumber(password)
                 && containsSpecialChar(password)
                 && hasNoConsecutives(password)
-                && hasRepeatNumbers(password)) {
-            return true;
-        } else {
-            return false;
-        }
+                && hasNoRepeatNumbers(password);
     }
 
     public boolean checkLength(String password) {
@@ -29,6 +22,7 @@ public class App {
     }
 
     public boolean containsNumber(String password) {
+
         return password.matches(".*\\d.*");
     }
 
@@ -38,7 +32,6 @@ public class App {
     }
 
     public boolean hasNoConsecutives(String password) {
-
         return !password.contains("012")
                 && !password.contains("123")
                 && !password.contains("234")
@@ -49,7 +42,8 @@ public class App {
                 && !password.contains("789");
     }
 
-    public boolean hasRepeatNumbers(String password) {
+
+    public boolean hasNoRepeatNumbers(String password) {
         if (password == null) {
             return false;
         }
@@ -60,30 +54,21 @@ public class App {
         int counter = 0;
         for (char c : chars) {
             if (Character.isDigit(c)) {
-                if(helper == 0){
+                if (helper == 0) {
                     helper = c;
                     counter++;
-                } else if(c==helper){
+                } else if (c == helper) {
                     counter++;
                 } else {
-                    counter=0;
+                    counter = 0;
                 }
                 if (counter == 3) {
-                    return true;
+                    return false;
                 }
-            } else{
+            } else {
                 counter = 0;
             }
         }
-
-        return false;
-
-//        String regex = "\\b([0-9])\\1\\1+\\b";
-//        Pattern p = Pattern.compile(regex);
-//        Matcher m = p.matcher(password);
-//
-//        return m.matches();
+        return true;
     }
-
-
 }

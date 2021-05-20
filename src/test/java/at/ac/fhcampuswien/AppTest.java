@@ -104,10 +104,106 @@ public class AppTest {
         //action
         boolean result = app.checkPassword("Password1111!!"); //more than 3 same numbers
         //assertion
-        assertTrue(result);
+        assertFalse(result);
 
     }
 
+
+
+
+
+
+    private static String password = "Password1111!!";
+
+    @Test
+    public void checkLengthValid() {
+        App app = new App();
+        boolean result = app.checkLength("12345678");
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkLengthFailed() {
+        App app = new App();
+        boolean result = app.checkLength("1234567");
+        assertFalse(result);
+    }
+
+    @Test
+    public void containsLowercaseUppercaseValid() {
+        App app = new App();
+        boolean result = app.containsLowercaseUppercase("Password01!!");
+        assertTrue(result);
+    }
+
+    @Test
+    public void containsLowercaseUppercaseFailed1() {
+        App app = new App();
+        boolean result = app.containsLowercaseUppercase("password01!!");
+        assertFalse(result);
+    }
+
+    @Test
+    public void containsLowercaseUppercaseFailed2() {
+        App app = new App();
+        boolean result = app.containsLowercaseUppercase("PASSWORD01!!");
+        assertFalse(result);
+    }
+
+    @Test
+    public void containsNumberValid() {
+        App app = new App();
+        boolean result = app.containsNumber("Password01!!");
+        assertTrue(result);
+    }
+    @Test
+    public void containsNumberFailed() {
+        App app = new App();
+        boolean result = app.containsNumber("Password!!");
+        assertFalse(result);
+    }
+
+    @Test
+    public void containsSpecialCharValid() {
+        App app = new App();
+        boolean result = app.containsSpecialChar("Password01!!");
+        assertTrue(result);
+    }
+
+    @Test
+    public void containsSpecialCharFailed() {
+        App app = new App();
+        boolean result = app.containsSpecialChar("Password01");
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasNoConsecutivesValid() {
+        App app = new App();
+        boolean result = app.hasNoConsecutives("Password01!!");
+        assertTrue(result);
+    }
+
+    @Test
+    public void hasNoConsecutivesFailed() {
+        App app = new App();
+        boolean result = app.hasNoConsecutives("Password012!!");
+        assertFalse(result);
+    }
+
+    @Test
+    public void hasNoRepeatNumbersValid() {
+        App app = new App();
+        boolean result = app.hasNoRepeatNumbers("Password01!!");
+        assertTrue(result);
+    }
+
+    @Test
+    public void hasNoRepeatNumbersFailed() {
+        App app = new App();
+        boolean result = app.hasNoRepeatNumbers("Password111!!");
+        assertFalse(result);
+    }
 
 
 }
